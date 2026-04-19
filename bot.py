@@ -12,7 +12,7 @@ if not TOKEN:
     raise ValueError("No DISCORD_TOKEN found in environment variables.")
 
 # Replace this with your own Discord User ID (owner only commands)
-OWNER_ID = 123456789012345678  # ⚠️ CHANGE THIS TO YOUR USER ID
+OWNER_ID = 1071330258172780594  # ⚠️ CHANGE THIS TO YOUR USER ID
 
 intents = discord.Intents.default()
 intents.message_content = False
