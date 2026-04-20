@@ -8,7 +8,7 @@ from datetime import datetime
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
-    raise ValueError("No DISCORD_TOKEN found in environment variables.")
+    raise ValueError("No DISCORD_TOKEN found in variables | this should nvr happen :6")
 
 OWNER_ID = 123456789012345678
 
@@ -38,7 +38,7 @@ async def on_ready():
 @bot.tree.error
 async def on_application_command_error(interaction: discord.Interaction, error: app_commands.AppCommandError):
     if isinstance(error, app_commands.CheckFailure):
-        await interaction.response.send_message("You don't have permission to use this command.", ephemeral=True)
+        await interaction.response.send_message("You don't have permission to use this command loser.", ephemeral=True)
     else:
         await interaction.response.send_message(f"Something went wrong: {error}", ephemeral=True)
         raise error
