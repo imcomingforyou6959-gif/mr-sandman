@@ -6,19 +6,19 @@ import random
 import os
 from datetime import datetime, timedelta
 
-# ========== CONFIGURATION ==========
+# hi guys 
 TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
     raise ValueError("No DISCORD_TOKEN found in environment variables.")
 
-# Replace this with your own Discord User ID (owner only commands)
-OWNER_ID = 1071330258172780594  # ⚠️ CHANGE THIS TO YOUR USER ID
+# 1
+OWNER_ID = 1071330258172780594  # rawrs.zapto.org
 
 intents = discord.Intents.default()
 intents.message_content = False
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-# ========== HELPER DECORATOR ==========
+# 2
 def user_install_command():
     def decorator(func):
         func = app_commands.allowed_installs(guilds=True, users=True)(func)
@@ -31,7 +31,7 @@ def owner_only():
         return interaction.user.id == OWNER_ID
     return app_commands.check(predicate)
 
-# ========== EVENT: BOT READY ==========
+# 3 EV
 @bot.event
 async def on_ready():
     print(f"✅ {bot.user} is online and ready!")
@@ -39,7 +39,7 @@ async def on_ready():
     await bot.tree.sync()
     print("   Slash commands synced globally.")
 
-# ========== OWNER ERROR HANDLER ==========
+# 4 EH
 @bot.tree.error
 async def on_application_command_error(interaction: discord.Interaction, error: app_commands.AppCommandError):
     if isinstance(error, app_commands.CheckFailure):
@@ -48,7 +48,7 @@ async def on_application_command_error(interaction: discord.Interaction, error: 
         await interaction.response.send_message(f"❌ Error: {error}", ephemeral=True)
         raise error
 
-# ========== BASIC FUN COMMANDS ==========
+# 5 Cmds
 @bot.tree.command(name="ping", description="Check bot latency")
 @user_install_command()
 async def ping(interaction: discord.Interaction):
@@ -61,7 +61,7 @@ async def roll(interaction: discord.Interaction, sides: int = 6):
     result = random.randint(1, sides)
     await interaction.response.send_message(f"🎲 {interaction.user.mention} rolled a **{result}** (1-{sides})")
 
-@bot.tree.command(name="choose", description="Choose between options (separate by commas)")
+@bot.tree.command(name="choose", description="Choose between options")
 @user_install_command()
 async def choose(interaction: discord.Interaction, options: str):
     choices = [opt.strip() for opt in options.split(",") if opt.strip()]
@@ -81,7 +81,7 @@ async def eight_ball(interaction: discord.Interaction, question: str):
     ]
     await interaction.response.send_message(f"🎱 Question: {question}\nAnswer: **{random.choice(answers)}**")
 
-# ========== REMINDER COMMAND (requires asyncio) ==========
+# 6 Etc
 @bot.tree.command(name="remindme", description="Set a reminder (in seconds)")
 @user_install_command()
 async def remindme(interaction: discord.Interaction, seconds: int, message: str = "Time's up!"):
@@ -95,25 +95,25 @@ async def remindme(interaction: discord.Interaction, seconds: int, message: str 
     except:
         await interaction.user.send(f"🔔 Reminder: {message}")
 
-# ========== OWNER ONLY: SAY COMMAND (public message) ==========
-@bot.tree.command(name="say", description="Make Mr. Sandman say something (owner only)")
+# 67
+@bot.tree.command(name="say", description="Make Mr. Sandman say something | DEV")
 @user_install_command()
 @owner_only()
 async def say(interaction: discord.Interaction, message: str):
     await interaction.response.send_message("✅ Message sent.", ephemeral=True)
     await interaction.channel.send(message)
 
-# ========== SECRET INCOGNITO MODE (owner only, ephemeral trigger, public message) ==========
+# 8
 @bot.tree.command(name="incognito", description="Send a message anonymously (owner only)")
 @user_install_command()
 @owner_only()
 async def incognito(interaction: discord.Interaction, message: str):
-    # Only the owner sees the confirmation (ephemeral)
+    # Only the person sees the confirmation fr
     await interaction.response.send_message("🕵️ Message sent incognito.", ephemeral=True)
     # Public message appears as if from the bot without revealing who triggered it
     await interaction.channel.send(f"🤫 *{message}*")
 
-# ========== FEEDBACK / SUGGESTION (owner only, sends to a webhook or DM) ==========
+# 9
 @bot.tree.command(name="feedback", description="Send feedback to the bot owner")
 @user_install_command()
 async def feedback(interaction: discord.Interaction, message: str):
@@ -122,6 +122,6 @@ async def feedback(interaction: discord.Interaction, message: str):
     if owner:
         await owner.send(f"📬 Feedback from {interaction.user}:\n{message}")
 
-# ========== RUN BOT ==========
+# env
 if __name__ == "__main__":
     bot.run(TOKEN)
