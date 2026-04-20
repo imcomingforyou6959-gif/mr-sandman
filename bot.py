@@ -161,6 +161,7 @@ async def choose(interaction: discord.Interaction, options: str):
 async def eight_ball(interaction: discord.Interaction, question: str):
     answers = [
         "Yeah, absolutely",
+        "Ofc",
         "Nah, I don't think so",
         "Maybe? Try again later",
         "For sure",
@@ -170,6 +171,8 @@ async def eight_ball(interaction: discord.Interaction, question: str):
         "Looks good to me",
         "Doubt it",
         "Can't say for sure right now",
+        "elon musk is jewish",
+        "pls dont delete me big b",
         "Yep",
         "No way",
         "Most likely",
