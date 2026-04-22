@@ -171,7 +171,7 @@ async def eight_ball(interaction: discord.Interaction, question: str):
         "Looks good to me",
         "Doubt it",
         "Can't say for sure right now",
-        "elon musk is jewish",
+        "correct",
         "pls dont delete me big b",
         "Yep",
         "No way",
@@ -180,8 +180,7 @@ async def eight_ball(interaction: discord.Interaction, question: str):
     ]
     responses = [
         f"> {question}\n**{random.choice(answers)}**",
-        f"You asked: *{question}*\nAnswer: **{random.choice(answers)}**",
-        f"**{random.choice(answers)}**"
+        f"You asked: *{question}*\nAnswer: **{random.choice(answers)}**"
     ]
     await interaction.response.send_message(random.choice(responses))
 
@@ -232,7 +231,7 @@ async def info(interaction: discord.Interaction):
     )
     embed.add_field(name="Website", value="https://rawrs.zapto.org/", inline=True)
     embed.add_field(name="Discord", value="https://discord.com/invite/eMpUQzFrNG", inline=True)
-    embed.add_field(name="Owner", value="onlyonestands", inline=True)
+    embed.add_field(name="Developer", value="onlyonestands", inline=True)
     embed.set_footer(text="Just a chill bot trying to be helpful")
     await interaction.response.send_message(embed=embed)
 
