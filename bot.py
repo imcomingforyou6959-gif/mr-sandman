@@ -10,7 +10,7 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 if not TOKEN:
     raise ValueError("No DISCORD_TOKEN found in variables | this should nvr happen :6")
 
-OWNER_ID = 123456789012345678
+OWNER_ID = 1071330258172780594
 
 intents = discord.Intents.default()
 intents.message_content = False
