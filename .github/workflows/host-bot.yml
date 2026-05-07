@@ -1,0 +1,26 @@
+name: Host Bot
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # Restarts every 6 hours
+  workflow_dispatch:        # Manual trigger
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run the Bot
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+        run: python bot.py
